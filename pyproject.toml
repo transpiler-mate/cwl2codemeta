@@ -111,6 +111,16 @@ dependencies = [
   "pytest-cov>=6.2,<8",
 ]
 
+[tool.mypy]
+strict = true
+
+[[tool.mypy.overrides]]
+module = [
+    "giturlparse.*",
+    "pyld.*",
+]
+ignore_missing_imports = true
+
 [tool.hatch.envs.test.scripts]
 test = "pytest {args:tests}"
 testv = "pytest --verbose {args:tests}"

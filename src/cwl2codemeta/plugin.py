@@ -17,11 +17,11 @@
 from __future__ import annotations
 
 import json
-from collections.abc import MutableMapping
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Annotated
+from typing import TYPE_CHECKING, Annotated, Any
 
-from giturlparse import GitUrlParsed, parse as gitparse
+from giturlparse import GitUrlParsed
+from giturlparse import parse as gitparse
 from loguru import logger
 from pydantic import AnyUrl, BaseModel, ConfigDict, Field
 from pyld import jsonld
@@ -34,6 +34,8 @@ from transpiler_mate.api import (
 )
 
 if TYPE_CHECKING:
+    from collections.abc import MutableMapping
+
     from transpiler_mate.api import TranspilerContext
 
 
@@ -62,7 +64,9 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
 
     try:
         if options.code_repository:
-            logger.debug(f"code_repository detected, analyzing: {options.code_repository}")
+            logger.debug(
+                f"code_repository detected, analyzing: {options.code_repository}"
+            )
 
             parsed_url: GitUrlParsed = gitparse(options.code_repository)
 
@@ -74,7 +78,9 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
 
             match parsed_url.platform:
                 case "github":
-                    continuous_integration = parsed_url.url2https.replace(".git", "/actions")
+                    continuous_integration = parsed_url.url2https.replace(
+                        ".git", "/actions"
+                    )
                     issue_tracker = parsed_url.url2https.replace(".git", "/issues")
                     related_links = [
                         parsed_url.url2https.replace(".git", page)
@@ -110,9 +116,7 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
 
         logger.info("Converting CWL Metadata to CodeMeta via JSON-LD conversion...")
 
-        doc: dict[str, Any] = metadata.model_dump(
-            exclude_none=True, by_alias=True
-        )
+        doc: dict[str, Any] = metadata.model_dump(exclude_none=True, by_alias=True)
 
         compacted: MutableMapping[str, Any] = jsonld.compact(
             doc,
@@ -126,8 +130,8 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
             },
             options=CompactOptions(
                 processingMode="json-ld-1.1",
-            )
-        ) # type: ignore
+            ),
+        )
 
         compacted["@context"] = "https://w3id.org/codemeta/3.0"
 
@@ -144,7 +148,9 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
         with options.output.open("w") as output_stream:
             json.dump(annotations, output_stream, indent=2)
 
-        logger.success(f"CodeMeta metadata successfully serialized to {options.output.absolute()}")
+        logger.success(
+            f"CodeMeta metadata successfully serialized to {options.output.absolute()}"
+        )
     except Exception as e:
         raise PluginExecutionError(
             f"An error occurred when serializing to {options.output.absolute()}, see nested exception"
