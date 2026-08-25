@@ -25,7 +25,6 @@ from giturlparse import parse as gitparse
 from loguru import logger
 from pydantic import AnyUrl, BaseModel, ConfigDict, Field
 from pyld import jsonld
-from pyld.options import CompactOptions
 from transpiler_mate.api import (
     PluginExecutionError,
     SoftwareApplication,
@@ -120,17 +119,8 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
 
         compacted: MutableMapping[str, Any] = jsonld.compact(
             doc,
-            {
-                "@context": {
-                    "@vocab": "https://schema.org/",
-                    # (optional) If you want relative IRIs to stay relative, omit @base.
-                    # If you want to forbid a base so @id values don't get resolved, set:
-                    # "@base": None,
-                }
-            },
-            options=CompactOptions(
-                processingMode="json-ld-1.1",
-            ),
+            {"@vocab": "https://schema.org/"},
+            options={"processingMode": "json-ld-1.1"},
         )
 
         compacted["@context"] = "https://w3id.org/codemeta/3.0"
@@ -146,7 +136,7 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
         logger.info(f"Serializing CodeMeta metadata to {options.output.absolute()}")
 
         with options.output.open("w") as output_stream:
-            json.dump(annotations, output_stream, indent=2)
+            json.dump(compacted, output_stream, indent=2)
 
         logger.success(
             f"CodeMeta metadata successfully serialized to {options.output.absolute()}"
