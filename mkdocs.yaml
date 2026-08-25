@@ -39,7 +39,8 @@ nav:
       - Conversion architecture: explanation/architecture.md
 
 theme:
-  name: material
+  name: readthedocs
+  highlightjs: true
   features:
     - navigation.sections
     - navigation.indexes
