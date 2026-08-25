@@ -14,48 +14,60 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# CodeMeta Transpiler-Mate Plugin
+# CWL to CodeMeta
 
-[![PyPI - Version](https://img.shields.io/pypi/v/cwl2codemeta.svg)](https://pypi.org/project/cwl2codemeta)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/cwl2codemeta.svg)](https://pypi.org/project/cwl2codemeta)
+`cwl2codemeta` is a Transpiler-Mate plugin that converts Schema.org metadata
+embedded in a Common Workflow Language (CWL) document into a CodeMeta 3.0
+JSON-LD document.
 
-CodeMeta Transpiler-Mate Plugin.
+The Transpiler-Mate runtime loads the CWL document and validates its
+document-level metadata as a Schema.org `SoftwareApplication`. This plugin
+then compacts the Schema.org terms and writes `codemeta.json`.
 
-## Project conventions
+When a source repository is supplied, the output is a
+`SoftwareSourceCode` object whose `targetProduct` contains the CWL software
+metadata. GitHub and GitLab repository URLs are also used to derive links for
+continuous integration, issue tracking, and related project pages.
 
-This project is templated a Hatch-based Python package with:
+## Installation
 
-- Apache-2.0 license
-- Keep a Changelog-compatible `CHANGELOG.md`
-- Diátaxis documentation under `docs/`
-- top-level `mkdocs.yaml`
-- Taskfile integration with `Terradue/taskfile-utils`
-- GitHub Actions CI
+Install the plugin and a compatible Transpiler-Mate runtime in the same Python
+environment:
+
+```console
+python -m pip install cwl2codemeta transpiler-mate-runtime
+```
+
+The package registers the `cwl2codemeta` plugin through the
+`transpiler_mate.plugins` entry-point group. It does not install a standalone
+`cwl2codemeta` executable.
+
+## Usage
+
+Your CWL document must carry the Schema.org metadata required by the
+Transpiler-Mate `SoftwareApplication` model. Then run:
+
+```console
+transpiler-mate cwl2codemeta \
+  --code-repository https://github.com/example/hello.git \
+  --output codemeta.json \
+  hello.cwl
+```
+
+Run `transpiler-mate cwl2codemeta --help` for the complete generated command
+interface.
 
 ## Documentation
 
-Project documentation is published at: https://Transpiler-Mate.github.io/cwl2codemeta/
+Project documentation is published at
+<https://Transpiler-Mate.github.io/cwl2codemeta/>. It includes a complete CWL
+example, the output contract, and details of the repository enrichment.
 
-## Contribute
+## Contributing
 
-Submit a [Github issue](https://github.com/Transpiler-Mate/cwl2codemeta/issues) if you have comments or suggestions.
-
-### Local quality checks
-
-Install [Hatch](https://hatch.pypa.io/) and [Taskfiles](https://taskfile.dev/docs/guide) then install the Git hook:
-
-```console
-task quality:pre-commit:install
-```
-
-Every commit runs Ruff (including the configured McCabe complexity limit),
-Ruff formatting, strict mypy checks, and the pytest suite.
-
-Run the complete hook explicitly with:
-
-```console
-task quality:pre-commit:run
+See [CONTRIBUTING.md](CONTRIBUTING.md). Submit issues at
+<https://github.com/Transpiler-Mate/cwl2codemeta/issues>.
 
 ## License
 
-[![Apache License, Version 2.0](https://img.shields.io/badge/license-Apache%20License%202.0-blue)](https://www.apache.org/licenses/LICENSE-2.0)
+Licensed under the [Apache License 2.0](LICENSE).

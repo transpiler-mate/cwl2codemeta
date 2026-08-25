@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""transpiler-mate plugin for CodeMeta Transpiler-Mate Plugin."""
+"""Convert normalized CWL Schema.org metadata to CodeMeta JSON-LD."""
 
 from __future__ import annotations
 
@@ -39,11 +39,17 @@ if TYPE_CHECKING:
 
 
 class CWL2CodeMetaOptions(BaseModel):
-    """Options accepted by the CodeMeta Transpiler-Mate Plugin plugin."""
+    """Options accepted by the CWL-to-CodeMeta plugin."""
 
     model_config = ConfigDict(extra="forbid")
 
-    code_repository: Annotated[str | None, Field(description="")]
+    code_repository: Annotated[
+        str | None,
+        Field(
+            default=None,
+            description="The (SVN, GitHub, CodePlex, ...) code repository URL",
+        ),
+    ]
 
     output: Annotated[
         Path,
@@ -53,11 +59,11 @@ class CWL2CodeMetaOptions(BaseModel):
 
 @transpiler_plugin(
     name="cwl2codemeta",
-    description="CodeMeta Transpiler-Mate Plugin.",
+    description="Convert CWL Schema.org metadata to CodeMeta 3.0 JSON-LD.",
     options_model=CWL2CodeMetaOptions,
 )
 def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> None:
-    """CodeMeta Transpiler-Mate Plugin."""
+    """Write normalized CWL software metadata as CodeMeta JSON-LD."""
 
     metadata: SoftwareApplication | SoftwareSourceCode = context.metadata
 

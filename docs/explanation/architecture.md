@@ -14,14 +14,56 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# Architecture
+# Conversion architecture
 
-`cwl2codemeta` follows a conventional Python package layout:
+`cwl2codemeta` operates on metadata prepared by a Transpiler-Mate host. It does
+not parse the CWL source itself.
+
+The conversion has four stages:
+
+1. The runtime resolves the CWL document and preserves its document-level
+   metadata.
+2. The runtime expands the prefixes declared in `$namespaces` and validates
+   the result as a Schema.org `SoftwareApplication`.
+3. The plugin optionally wraps that application in a Schema.org
+   `SoftwareSourceCode` object built from `code_repository`.
+4. PyLD compacts the full-IRI Schema.org representation with the Schema.org
+   vocabulary and the plugin replaces the JSON-LD context with the CodeMeta
+   3.0 context before serializing it.
 
 ```text
-src/cwl2codemeta/
-tests/
-docs/
+CWL document
+  └─ document-level Schema.org metadata
+       └─ Transpiler-Mate SoftwareApplication
+            └─ optional SoftwareSourceCode repository wrapper
+                 └─ JSON-LD compaction + CodeMeta 3.0 context
+                      └─ codemeta.json
 ```
 
-The project uses Hatch for packaging, testing environments, and build orchestration. Documentation is organized according to Diátaxis so that learning, task completion, lookup, and conceptual understanding remain separated.
+## Why the terms can be compacted
+
+CodeMeta uses Schema.org as its base vocabulary and defines a profile for
+describing software. The normalized model serializes properties as full IRIs,
+such as `https://schema.org/softwareVersion`. Compacting with
+`https://schema.org/` as `@vocab` turns that IRI into `softwareVersion`; setting
+`https://w3id.org/codemeta/3.0` as `@context` makes the resulting document a
+CodeMeta 3.0 JSON-LD document.
+
+## Repository wrapper
+
+When `code_repository` is set, the source repository and the runnable software
+are represented separately:
+
+- the top-level `SoftwareSourceCode` describes the repository;
+- `targetProduct` contains the `SoftwareApplication` extracted from CWL;
+- GitHub or GitLab URLs add platform-specific CI, issue, and related links.
+
+Without a repository, direct API callers may pass `None` and receive the
+`SoftwareApplication` as the top-level CodeMeta object. The generated CLI
+currently requires `--code-repository` because the option has no model default.
+
+## Keyword handling
+
+The metadata model permits textual keywords, URLs, and `DefinedTerm` objects.
+The plugin currently writes only string entries from a keyword list into the
+final compacted document. Non-string list entries are omitted.

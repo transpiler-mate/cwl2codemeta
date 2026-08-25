@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-site_name: CodeMeta Transpiler-Mate Plugin
-site_description: CodeMeta Transpiler-Mate Plugin.
+site_name: CWL to CodeMeta
+site_description: Convert Schema.org metadata embedded in CWL to CodeMeta 3.0 JSON-LD.
 site_url: https://Transpiler-Mate.github.io/cwl2codemeta/
 repo_url: https://github.com/Transpiler-Mate/cwl2codemeta
 repo_name: cwl2codemeta
@@ -26,17 +26,17 @@ nav:
   - Home: index.md
   - Tutorials:
       - Overview: tutorials/index.md
-      - First steps: tutorials/first-steps.md
+      - Convert your first CWL: tutorials/first-steps.md
   - How-to guides:
       - Overview: how-to/index.md
       - Install: how-to/install.md
-      - Use the CLI: how-to/use-cli.md
+      - Use the command line: how-to/use-cli.md
   - Reference:
       - Overview: reference/index.md
       - API: reference/api.md
   - Explanation:
       - Overview: explanation/index.md
-      - Architecture: explanation/architecture.md
+      - Conversion architecture: explanation/architecture.md
 
 theme:
   name: material

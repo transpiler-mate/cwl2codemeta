@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""CodeMeta Transpiler-Mate Plugin."""
+"""Transpiler-Mate plugin for converting CWL metadata to CodeMeta."""
 
 from cwl2codemeta.__about__ import __version__
 

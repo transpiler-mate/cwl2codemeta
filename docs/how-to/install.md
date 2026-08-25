@@ -14,18 +14,32 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# Install
+# Install the plugin
 
 ## From PyPI
 
-```bash
-pip install cwl2codemeta
+Install `cwl2codemeta` and a compatible Transpiler-Mate runtime into the same
+Python environment:
+
+```console
+python -m pip install cwl2codemeta transpiler-mate-runtime
 ```
+
+Verify that plugin discovery succeeded:
+
+```console
+transpiler-mate cwl2codemeta --help
+```
+
+The package registers a plugin entry point; it does not provide a standalone
+`cwl2codemeta` executable.
 
 ## From source
 
-```bash
-git clone https://github.com/Transpiler-Mate/cwl2codemeta
+```console
+git clone https://github.com/Transpiler-Mate/cwl2codemeta.git
 cd cwl2codemeta
-hatch env create
+python -m pip install . transpiler-mate-runtime
 ```
+
+Python 3.10 or newer is required.

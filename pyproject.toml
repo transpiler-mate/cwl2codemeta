@@ -19,7 +19,7 @@ build-backend = "hatchling.build"
 [project]
 name = "cwl2codemeta"
 dynamic = ["version"]
-description = "CodeMeta Transpiler-Mate Plugin."
+description = "Convert CWL Schema.org metadata to CodeMeta 3.0 JSON-LD."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
