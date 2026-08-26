@@ -126,7 +126,7 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
         compacted: MutableMapping[str, Any] = jsonld.compact(
             doc,
             {"@vocab": "https://schema.org/"},
-            options={"processingMode": "json-ld-1.1"},
+            options={"processingMode": "json-ld-1.1", "ordered": None},
         )
 
         compacted["@context"] = "https://w3id.org/codemeta/3.0"
