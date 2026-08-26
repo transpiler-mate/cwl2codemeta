@@ -139,6 +139,8 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
                     lambda keyword: isinstance(keyword, str), context.metadata.keywords
                 )
             )
+
+        options.output.parent.mkdir(parents=True, exist_ok=True)
         logger.info(f"Serializing CodeMeta metadata to {options.output.absolute()}")
 
         with options.output.open("w") as output_stream:
