@@ -27,9 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Replaced the template documentation with an end-to-end guide to converting
-  CWL Schema.org metadata into CodeMeta 3.0 JSON-LD.
-
 ### Deprecated
 
 ### Removed
@@ -40,12 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial Hatch-based Python project scaffold.
-- Diátaxis documentation structure.
-- MkDocs configuration.
-- Taskfile integration with Terradue remote task utilities.
-
-## [0.1.0] - 2026-01-01
+## [0.1.0] - 2026-09-09
 
 ### Added
 
