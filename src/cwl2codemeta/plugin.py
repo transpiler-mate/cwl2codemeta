@@ -1,4 +1,4 @@
-# Copyright 2026 Transpiler-Mate
+# Copyright 2026 Terradue
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -69,9 +69,7 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
 
     try:
         if options.code_repository:
-            logger.debug(
-                f"code_repository detected, analyzing: {options.code_repository}"
-            )
+            logger.debug(f"code_repository detected, analyzing: {options.code_repository}")
 
             parsed_url: GitUrlParsed = gitparse(options.code_repository)
 
@@ -83,9 +81,7 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
 
             match parsed_url.platform:
                 case "github":
-                    continuous_integration = parsed_url.url2https.replace(
-                        ".git", "/actions"
-                    )
+                    continuous_integration = parsed_url.url2https.replace(".git", "/actions")
                     issue_tracker = parsed_url.url2https.replace(".git", "/issues")
                     related_links = [
                         parsed_url.url2https.replace(".git", page)
@@ -93,9 +89,7 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
                     ]
 
                 case "gitlab":
-                    continuous_integration = parsed_url.url2https.replace(
-                        ".git", "/-/pipelines"
-                    )
+                    continuous_integration = parsed_url.url2https.replace(".git", "/-/pipelines")
                     issue_tracker = parsed_url.url2https.replace(".git", "/-/issues")
                     related_links = [
                         parsed_url.url2https.replace(".git", page)
@@ -135,9 +129,7 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
 
         if context.metadata.keywords and isinstance(context.metadata.keywords, list):
             compacted["keywords"] = list(
-                filter(
-                    lambda keyword: isinstance(keyword, str), context.metadata.keywords
-                )
+                filter(lambda keyword: isinstance(keyword, str), context.metadata.keywords)
             )
 
         options.output.parent.mkdir(parents=True, exist_ok=True)
@@ -146,9 +138,7 @@ def cwl2codemeta(context: TranspilerContext, options: CWL2CodeMetaOptions) -> No
         with options.output.open("w") as output_stream:
             json.dump(compacted, output_stream, indent=2)
 
-        logger.success(
-            f"CodeMeta metadata successfully serialized to {options.output.absolute()}"
-        )
+        logger.success(f"CodeMeta metadata successfully serialized to {options.output.absolute()}")
     except Exception as e:
         raise PluginExecutionError(
             f"An error occurred when serializing to {options.output.absolute()}, see nested exception"

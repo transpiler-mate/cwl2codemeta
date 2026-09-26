@@ -1,5 +1,5 @@
 <!--
-Copyright 2026 Transpiler-Mate
+Copyright 2026 Terradue
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,6 +15,11 @@ limitations under the License.
 -->
 
 # CWL to CodeMeta
+
+[![PyPI - Version](https://img.shields.io/pypi/v/cwl2codemeta.svg)](https://pypi.org/project/cwl2codemeta)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/cwl2codemeta.svg)](https://pypi.org/project/cwl2codemeta)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/transpiler-mate/cwl2codemeta/package.yaml?branch=develop&event=push&label=build&logo=githubactions)](https://github.com/transpiler-mate/cwl2codemeta/actions/workflows/package.yaml?query=branch%3Adevelop)
+[![Code coverage](https://img.shields.io/codecov/c/github/transpiler-mate/cwl2codemeta/develop?logo=codecov)](https://app.codecov.io/gh/transpiler-mate/cwl2codemeta/tree/develop)
 
 `cwl2codemeta` is a Transpiler-Mate plugin that converts Schema.org metadata
 embedded in a Common Workflow Language (CWL) document into a CodeMeta 3.0

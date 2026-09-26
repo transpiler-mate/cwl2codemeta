@@ -1,4 +1,4 @@
-# Copyright 2026 Transpiler-Mate
+# Copyright 2026 Terradue
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,7 +22,10 @@ from cwl2codemeta.plugin import CWL2CodeMetaOptions, cwl2codemeta
 
 
 class MetadataStub:
-    keywords = ["workflow", 42]
+    """Supply metadata with mixed keyword values for serialization tests."""
+
+    def __init__(self) -> None:
+        self.keywords: list[str | int] = ["workflow", 42]
 
     def model_dump(self, **_: Any) -> dict[str, Any]:
         return {
