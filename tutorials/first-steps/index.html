@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://Transpiler-Mate.github.io/cwl2codemeta/tutorials/first-steps/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Convert your first CWL - CWL to CodeMeta</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Convert your first CWL";
+        var mkdocs_page_input_path = "tutorials/first-steps.md";
+        var mkdocs_page_url = "/cwl2codemeta/tutorials/first-steps/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> CWL to CodeMeta
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Convert your first CWL</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-install-the-runtime-and-plugin">1. Install the runtime and plugin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-create-a-metadata-bearing-cwl-file">2. Create a metadata-bearing CWL file</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-generate-codemetajson">3. Generate codemeta.json</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next steps</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/install/">Install</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/use-cli/">Use the command line</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/api/">API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/architecture/">Conversion architecture</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">CWL to CodeMeta</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Tutorials</li>
+      <li class="breadcrumb-item active">Convert your first CWL</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Transpiler-Mate/cwl2codemeta/edit/main/docs/tutorials/first-steps.md">Edit on cwl2codemeta</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+Copyright 2026 Terradue
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<h1 id="convert-your-first-cwl-document">Convert your first CWL document<a class="headerlink" href="#convert-your-first-cwl-document" title="Permanent link">&para;</a></h1>
+<p>This tutorial converts the document-level Schema.org metadata in a small CWL
+tool into CodeMeta JSON-LD.</p>
+<h2 id="1-install-the-runtime-and-plugin">1. Install the runtime and plugin<a class="headerlink" href="#1-install-the-runtime-and-plugin" title="Permanent link">&para;</a></h2>
+<p>Create and activate a virtual environment, then install both packages:</p>
+<div class="highlight"><pre><span></span><code><span class="go">python -m venv .venv</span>
+<span class="go">source .venv/bin/activate</span>
+<span class="go">python -m pip install cwl2codemeta transpiler-mate-runtime</span>
+</code></pre></div>
+<p>On Windows PowerShell, activate the environment with
+<code>.venv\Scripts\Activate.ps1</code> instead.</p>
+<p>Confirm that the runtime discovered the plugin:</p>
+<div class="highlight"><pre><span></span><code><span class="go">transpiler-mate cwl2codemeta --help</span>
+</code></pre></div>
+<h2 id="2-create-a-metadata-bearing-cwl-file">2. Create a metadata-bearing CWL file<a class="headerlink" href="#2-create-a-metadata-bearing-cwl-file" title="Permanent link">&para;</a></h2>
+<p>Save the following as <code>hello.cwl</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">cwlVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.2</span>
+<span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLineTool</span>
+<span class="nt">$namespaces</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.org/</span>
+<span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hello tool</span>
+<span class="nt">s:description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Print a greeting</span>
+<span class="nt">s:dateCreated</span><span class="p">:</span><span class="w"> </span><span class="s">"2026-08-24"</span>
+<span class="nt">s:license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://spdx.org/licenses/Apache-2.0</span>
+<span class="nt">s:softwareVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
+<span class="nt">s:softwareHelp</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hello tool documentation</span>
+<span class="w">  </span><span class="nt">s:url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://example.org/hello/help</span>
+<span class="nt">s:publisher</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example organization</span>
+<span class="nt">s:author</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">s:givenName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ada</span>
+<span class="w">  </span><span class="nt">s:familyName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lovelace</span>
+<span class="w">  </span><span class="nt">s:email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ada@example.org</span>
+<span class="w">  </span><span class="nt">s:affiliation</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example organization</span>
+<span class="nt">$graph</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hello</span>
+<span class="w">    </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLineTool</span>
+<span class="w">    </span><span class="nt">baseCommand</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">message</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hello, world!</span>
+<span class="w">        </span><span class="nt">inputBinding</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">position</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</code></pre></div>
+<p>The <code>$namespaces</code> entry defines the <code>s</code> prefix. The <code>s:*</code> properties sit at
+the document level around <code>$graph</code>, which lets the runtime preserve and
+normalize them separately from the CWL process itself.</p>
+<h2 id="3-generate-codemetajson">3. Generate <code>codemeta.json</code><a class="headerlink" href="#3-generate-codemetajson" title="Permanent link">&para;</a></h2>
+<p>Run the plugin through Transpiler-Mate:</p>
+<div class="highlight"><pre><span></span><code><span class="go">transpiler-mate cwl2codemeta \</span>
+<span class="go">  --code-repository https://github.com/example/hello.git \</span>
+<span class="go">  --output codemeta.json \</span>
+<span class="go">  hello.cwl</span>
+</code></pre></div>
+<p>The command validates the metadata, enriches it with repository links, and
+writes <code>codemeta.json</code>. Its top-level structure is:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://w3id.org/codemeta/3.0"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SoftwareSourceCode"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"codeRepository"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/example/hello.git"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"continuousIntegration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/example/hello/actions"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"issueTracker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/example/hello/issues"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"relatedLink"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"https://github.com/example/hello/wiki"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"https://github.com/example/hello/releases"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"https://github.com/example/hello/deployments"</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"targetProduct"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SoftwareApplication"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello tool"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Print a greeting"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"softwareVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The shortened example omits some <code>targetProduct</code> properties for readability;
+the generated file also contains the license, creation date, help, publisher,
+and author from the CWL metadata.</p>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Review all <a href="../../how-to/use-cli/">command options</a>.</li>
+<li>Learn how the <a href="../../explanation/architecture/">conversion pipeline</a> preserves
+  Schema.org semantics while changing the JSON-LD context.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../how-to/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Transpiler-Mate/cwl2codemeta" class="fa fa-code-fork" style="color: #fcfcfc"> cwl2codemeta</a>
+        </span>
+    
+    
+      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../how-to/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

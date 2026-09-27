@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://Transpiler-Mate.github.io/cwl2codemeta/reference/api/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>API - CWL to CodeMeta</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API";
+        var mkdocs_page_input_path = "reference/api.md";
+        var mkdocs_page_url = "/cwl2codemeta/reference/api/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> CWL to CodeMeta
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/first-steps/">Convert your first CWL</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/install/">Install</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/use-cli/">Use the command line</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">API</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#registration">Registration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#options">Options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#input-contract">Input contract</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#output-contract">Output contract</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#errors">Errors</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#python-api-details">Python API details</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cwl2codemeta.plugin">plugin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cwl2codemeta.plugin.CWL2CodeMetaOptions">CWL2CodeMetaOptions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cwl2codemeta.plugin.cwl2codemeta">cwl2codemeta</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/architecture/">Conversion architecture</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">CWL to CodeMeta</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+      <li class="breadcrumb-item active">API</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Transpiler-Mate/cwl2codemeta/edit/main/docs/reference/api.md">Edit on cwl2codemeta</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+Copyright 2026 Terradue
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<h1 id="plugin-api">Plugin API<a class="headerlink" href="#plugin-api" title="Permanent link">&para;</a></h1>
+<p>The plugin registration and its options model are defined in
+<code>cwl2codemeta.plugin</code>.</p>
+<h2 id="registration">Registration<a class="headerlink" href="#registration" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">cwl2codemeta.plugin</span><span class="w"> </span><span class="kn">import</span> <span class="n">cwl2codemeta</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entry-point group</td>
+<td><code>transpiler_mate.plugins</code></td>
+</tr>
+<tr>
+<td>Entry-point name</td>
+<td><code>cwl2codemeta</code></td>
+</tr>
+<tr>
+<td>Entry-point object</td>
+<td><code>cwl2codemeta.plugin:cwl2codemeta</code></td>
+</tr>
+<tr>
+<td>Registration name</td>
+<td><code>cwl2codemeta</code></td>
+</tr>
+<tr>
+<td>Options model</td>
+<td><code>CWL2CodeMetaOptions</code></td>
+</tr>
+<tr>
+<td>Execution return value</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>cwl2codemeta</code> is a <code>PluginRegistration</code>, not a plain conversion function.
+Invoke it directly with <code>cwl2codemeta.execute(context, options)</code> or let a
+Transpiler-Mate host invoke it.</p>
+<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">cwl2codemeta.plugin</span><span class="w"> </span><span class="kn">import</span> <span class="n">CWL2CodeMetaOptions</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Model default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code_repository</code></td>
+<td><code>str \| None</code></td>
+<td>Required</td>
+<td>Repository URL used for <code>SoftwareSourceCode</code> metadata; <code>None</code> disables the wrapper for direct API calls.</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td><code>pathlib.Path</code></td>
+<td><code>codemeta.json</code></td>
+<td>JSON-LD file written by the plugin.</td>
+</tr>
+</tbody>
+</table>
+<p>Unknown fields are forbidden. Because <code>code_repository</code> has no default, the
+generated CLI exposes <code>--code-repository</code> as required even though direct API
+callers can explicitly provide <code>None</code>.</p>
+<h2 id="input-contract">Input contract<a class="headerlink" href="#input-contract" title="Permanent link">&para;</a></h2>
+<p>The plugin reads <code>context.metadata</code>, which must be a normalized
+<code>SoftwareApplication</code> supplied by the host. The current model requires these
+Schema.org properties:</p>
+<ul>
+<li><code>name</code></li>
+<li><code>description</code></li>
+<li><code>dateCreated</code></li>
+<li><code>license</code></li>
+<li><code>softwareVersion</code></li>
+<li><code>softwareHelp</code></li>
+<li><code>publisher</code></li>
+<li><code>author</code></li>
+</ul>
+<p>The plugin serializes the model with Schema.org aliases, excludes properties
+whose value is <code>None</code>, and converts the result through JSON-LD compaction.</p>
+<h2 id="output-contract">Output contract<a class="headerlink" href="#output-contract" title="Permanent link">&para;</a></h2>
+<p>The output is indented JSON with <code>@context</code> set to
+<code>https://w3id.org/codemeta/3.0</code>.</p>
+<p>When <code>code_repository</code> is a string, the top-level <code>@type</code> is
+<code>SoftwareSourceCode</code> and <code>targetProduct</code> contains the input
+<code>SoftwareApplication</code>. With an explicit <code>None</code>, the top-level object remains a
+<code>SoftwareApplication</code>.</p>
+<p>GitHub and GitLab URLs receive derived <code>continuousIntegration</code>, <code>issueTracker</code>,
+and <code>relatedLink</code> properties. Other recognized Git URL forms are normalized to
+HTTPS when supported by <code>giturlparse</code>, but do not receive derived links.</p>
+<h2 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h2>
+<p>Any exception raised while parsing the repository, converting JSON-LD, opening
+the destination, or serializing the document is wrapped in
+<code>PluginExecutionError</code>, with the original exception chained as <code>__cause__</code>.</p>
+<h2 id="python-api-details">Python API details<a class="headerlink" href="#python-api-details" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="cwl2codemeta.plugin"></a>
+    <div class="doc doc-contents first">
+
+        <p>Convert normalized CWL Schema.org metadata to CodeMeta JSON-LD.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cwl2codemeta.plugin.CWL2CodeMetaOptions" class="doc doc-heading">
+            <code>CWL2CodeMetaOptions</code>
+
+
+<a href="#cwl2codemeta.plugin.CWL2CodeMetaOptions" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+
+        <p>Options accepted by the CWL-to-CodeMeta plugin.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/cwl2codemeta/plugin.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CWL2CodeMetaOptions</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Options accepted by the CWL-to-CodeMeta plugin."""</span>
+
+    <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="s2">"forbid"</span><span class="p">)</span>
+
+    <span class="n">code_repository</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span>
+        <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">Field</span><span class="p">(</span>
+            <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"The (SVN, GitHub, CodePlex, ...) code repository URL"</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="n">output</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span>
+        <span class="n">Path</span><span class="p">,</span>
+        <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">"codemeta.json"</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">"The output file path"</span><span class="p">),</span>
+    <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="cwl2codemeta.plugin.cwl2codemeta" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">cwl2codemeta</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span></code>
+
+<a href="#cwl2codemeta.plugin.cwl2codemeta" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Write normalized CWL software metadata as CodeMeta JSON-LD.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/cwl2codemeta/plugin.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@transpiler_plugin</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"cwl2codemeta"</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"Convert CWL Schema.org metadata to CodeMeta 3.0 JSON-LD."</span><span class="p">,</span>
+    <span class="n">options_model</span><span class="o">=</span><span class="n">CWL2CodeMetaOptions</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cwl2codemeta</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">TranspilerContext</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">CWL2CodeMetaOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Write normalized CWL software metadata as CodeMeta JSON-LD."""</span>
+
+    <span class="n">metadata</span><span class="p">:</span> <span class="n">SoftwareApplication</span> <span class="o">|</span> <span class="n">SoftwareSourceCode</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">metadata</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">code_repository</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"code_repository detected, analyzing: </span><span class="si">{</span><span class="n">options</span><span class="o">.</span><span class="n">code_repository</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="n">parsed_url</span><span class="p">:</span> <span class="n">GitUrlParsed</span> <span class="o">=</span> <span class="n">gitparse</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">code_repository</span><span class="p">)</span>
+
+            <span class="n">continuous_integration</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">issue_tracker</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">related_links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Creating URLs for Git URL platform: </span><span class="si">{</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">platform</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="k">match</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">platform</span><span class="p">:</span>
+                <span class="k">case</span> <span class="s2">"github"</span><span class="p">:</span>
+                    <span class="n">continuous_integration</span> <span class="o">=</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">url2https</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".git"</span><span class="p">,</span> <span class="s2">"/actions"</span><span class="p">)</span>
+                    <span class="n">issue_tracker</span> <span class="o">=</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">url2https</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".git"</span><span class="p">,</span> <span class="s2">"/issues"</span><span class="p">)</span>
+                    <span class="n">related_links</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="n">parsed_url</span><span class="o">.</span><span class="n">url2https</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".git"</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"/wiki"</span><span class="p">,</span> <span class="s2">"/releases"</span><span class="p">,</span> <span class="s2">"/deployments"</span><span class="p">]</span>
+                    <span class="p">]</span>
+
+                <span class="k">case</span> <span class="s2">"gitlab"</span><span class="p">:</span>
+                    <span class="n">continuous_integration</span> <span class="o">=</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">url2https</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".git"</span><span class="p">,</span> <span class="s2">"/-/pipelines"</span><span class="p">)</span>
+                    <span class="n">issue_tracker</span> <span class="o">=</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">url2https</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".git"</span><span class="p">,</span> <span class="s2">"/-/issues"</span><span class="p">)</span>
+                    <span class="n">related_links</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="n">parsed_url</span><span class="o">.</span><span class="n">url2https</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".git"</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"/-/wikis/home"</span><span class="p">,</span> <span class="s2">"/-/packages"</span><span class="p">,</span> <span class="s2">"/-/pipelines"</span><span class="p">]</span>
+                    <span class="p">]</span>
+
+                <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Platform </span><span class="si">{</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">platform</span><span class="si">}</span><span class="s2"> unsupported yet"</span><span class="p">)</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Rebuilding SoftwareSourceCode..."</span><span class="p">)</span>
+
+            <span class="n">metadata</span> <span class="o">=</span> <span class="n">SoftwareSourceCode</span><span class="p">(</span>
+                <span class="n">code_repository</span><span class="o">=</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">url2https</span><span class="p">,</span>
+                <span class="n">target_product</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+                <span class="n">continuous_integration</span><span class="o">=</span><span class="n">AnyUrl</span><span class="p">(</span><span class="n">continuous_integration</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">continuous_integration</span>
+                <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">issue_tracker</span><span class="o">=</span><span class="n">AnyUrl</span><span class="p">(</span><span class="n">issue_tracker</span><span class="p">)</span> <span class="k">if</span> <span class="n">issue_tracker</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">related_link</span><span class="o">=</span><span class="p">[</span><span class="n">AnyUrl</span><span class="p">(</span><span class="n">related_link</span><span class="p">)</span> <span class="k">for</span> <span class="n">related_link</span> <span class="ow">in</span> <span class="n">related_links</span><span class="p">],</span>
+            <span class="p">)</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"SoftwareSourceCode successfully rebuilt."</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Converting CWL Metadata to CodeMeta via JSON-LD conversion..."</span><span class="p">)</span>
+
+        <span class="n">doc</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude_none</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">by_alias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">compacted</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">jsonld</span><span class="o">.</span><span class="n">compact</span><span class="p">(</span>
+            <span class="n">doc</span><span class="p">,</span>
+            <span class="p">{</span><span class="s2">"@vocab"</span><span class="p">:</span> <span class="s2">"https://schema.org/"</span><span class="p">},</span>
+            <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">"processingMode"</span><span class="p">:</span> <span class="s2">"json-ld-1.1"</span><span class="p">,</span> <span class="s2">"ordered"</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+        <span class="p">)</span>
+
+        <span class="n">compacted</span><span class="p">[</span><span class="s2">"@context"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"https://w3id.org/codemeta/3.0"</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">"CWL Metadata successfully converted to CodeMeta via JSON-LD!"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">keywords</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">keywords</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">compacted</span><span class="p">[</span><span class="s2">"keywords"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">keyword</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span> <span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">keywords</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">options</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Serializing CodeMeta metadata to </span><span class="si">{</span><span class="n">options</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">options</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">output_stream</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">compacted</span><span class="p">,</span> <span class="n">output_stream</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">"CodeMeta metadata successfully serialized to </span><span class="si">{</span><span class="n">options</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">PluginExecutionError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"An error occurred when serializing to </span><span class="si">{</span><span class="n">options</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="si">}</span><span class="s2">, see nested exception"</span>
+        <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../explanation/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Transpiler-Mate/cwl2codemeta" class="fa fa-code-fork" style="color: #fcfcfc"> cwl2codemeta</a>
+        </span>
+    
+    
+      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../explanation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
